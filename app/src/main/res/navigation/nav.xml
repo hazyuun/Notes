@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/scr_list">
+
+    <fragment
+        android:id="@+id/scr_list"
+        android:name="app.notes.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_scr_list_to_scr_edit"
+            app:destination="@id/scr_edit"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_scr_list_to_scr_read"
+            app:destination="@id/scr_read" />
+    </fragment>
+    <fragment
+        android:id="@+id/scr_edit"
+        android:name="app.notes.fragments.EditFragment"
+        android:label="fragment_edit"
+        tools:layout="@layout/fragment_edit" >
+        <action
+            android:id="@+id/action_scr_edit_to_scr_list"
+            app:destination="@id/scr_list"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/nav" />
+        <argument
+            android:name="note"
+            app:argType="app.notes.data.Note"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+    <fragment
+        android:id="@+id/scr_read"
+        android:name="app.notes.fragments.ReadFragment"
+        android:label="fragment_read">
+        <action
+            android:id="@+id/action_scr_read_to_scr_list"
+            app:destination="@id/scr_list" />
+        <argument
+            android:name="note"
+            app:argType="app.notes.data.Note" />
+        <action
+            android:id="@+id/action_scr_read_to_scr_edit"
+            app:destination="@id/scr_edit" />
+    </fragment>
+</navigation>
